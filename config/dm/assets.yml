@@ -1,0 +1,9 @@
+js:
+  dmJCarouselLiteBehaviorPlugin:
+    jcarousellite:  jquery.jcarousel-lite.modified
+    mousewheel:     jquery.mousewheel.min
+    launch: dmJCarouselLiteBehavior
+    
+css:
+  dmJCarouselLiteBehaviorPlugin:
+    default: default

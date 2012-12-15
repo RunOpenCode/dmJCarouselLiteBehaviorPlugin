@@ -1,0 +1,37 @@
+### Default settings for the jCarouselLite Front Behavior
+default:
+  dmJCarouselLiteBehavior:
+    defaults: # Default settings for behavior
+      inner_target: ''
+      theme: default
+      item_width: 100
+      item_height: 100
+      mouse_wheel: true
+      auto_scroll: false
+      auto_scroll_period: 500
+      hover_pause: true
+      speed: 500
+      easing: jswing
+      is_vertical: false
+      is_circular: true
+      visible: 1
+      start: 1
+      scroll: 1
+      pager: bottom
+      navigation: bottom
+    labels:
+      auto_scroll_period: Auto scroll interval
+      speed: Scroll speed
+      start: Start from
+      hover_pause: Pause on hover
+    helps:
+      auto_scroll: Auto scroll items
+      auto_scroll_period: Interval in ms between two auto scrolling
+      mouse_wheel: Enable/disable mouse wheel for scrolling
+      speed: Speed of scrolling animation in ms
+      start: The order number of first visible item
+      scroll: Number of items to scroll at once
+      hover_pause: Mouse hover pause scrolling when auto scroll is set to true
+      visible: Number of visible items
+    themes:
+      default: 'dmJCarouselLiteBehaviorPlugin.default' # From assets.yml - U can use a path instead

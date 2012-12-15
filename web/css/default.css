@@ -1,0 +1,100 @@
+/*---------------------------------------------------
+    LESS Elements 0.8
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
+.default.dmJCarouselLiteBehavior.horizontal .navigation {
+  cursor: pointer;
+  float: left;
+  width: 30px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.default.dmJCarouselLiteBehavior.horizontal .navigation-previous {
+  background-image: url(../images/default/horizontal/previous.png);
+}
+.default.dmJCarouselLiteBehavior.horizontal .navigation-previous:hover {
+  background-image: url(../images/default/horizontal/previous-hover.png);
+}
+.default.dmJCarouselLiteBehavior.horizontal .navigation-next {
+  background-image: url(../images/default/horizontal/next.png);
+}
+.default.dmJCarouselLiteBehavior.horizontal .navigation-next:hover {
+  background-image: url(../images/default/horizontal/next-hover.png);
+}
+.default.dmJCarouselLiteBehavior.horizontal .items-wrapper {
+  float: left;
+}
+.default.dmJCarouselLiteBehavior.vertical .navigation {
+  cursor: pointer;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.default.dmJCarouselLiteBehavior.vertical .navigation-previous {
+  background-image: url(../images/default/vertical/previous.png);
+}
+.default.dmJCarouselLiteBehavior.vertical .navigation-previous:hover {
+  background-image: url(../images/default/vertical/previous-hover.png);
+}
+.default.dmJCarouselLiteBehavior.vertical .navigation-next {
+  background-image: url(../images/default/vertical/next.png);
+}
+.default.dmJCarouselLiteBehavior.vertical .navigation-next:hover {
+  background-image: url(../images/default/vertical/next-hover.png);
+}
+.default.dmJCarouselLiteBehavior .pager-wrapper {
+  text-align: center;
+  width: 100%;
+}
+.default.dmJCarouselLiteBehavior .pager-wrapper .pager {
+  display: inline-block;
+}
+.default.dmJCarouselLiteBehavior .pager-wrapper .pager .pager-item {
+  border: solid 2px #4d4d4d;
+  cursor: pointer;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  margin-right: 2px;
+  margin-left: 2px;
+}
+.default.dmJCarouselLiteBehavior .pager-wrapper .pager .pager-item.current {
+  border: solid 2px #9a9a9a;
+  -webkit-box-shadow: 0 0 3px #cdcdcd;
+  -moz-box-shadow: 0 0 3px #cdcdcd;
+  box-shadow: 0 0 3px #cdcdcd;
+}
+.default.dmJCarouselLiteBehavior .pager-wrapper .pager .pager-item .enumeration {
+  display: none;
+}
+.default.dmJCarouselLiteBehavior .pager-wrapper .navigation {
+  float: none;
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  cursor: pointer;
+  display: inline-block;
+}
+.default.dmJCarouselLiteBehavior .pager-wrapper .navigation-previous {
+  border-right: 6px solid #4d4d4d;
+  margin-right: 2px;
+}
+.default.dmJCarouselLiteBehavior .pager-wrapper .navigation-previous:hover {
+  border-right-color: #9a9a9a;
+}
+.default.dmJCarouselLiteBehavior .pager-wrapper .navigation-next {
+  border-left: 6px solid #4d4d4d;
+  margin-right: 2px;
+}
+.default.dmJCarouselLiteBehavior .pager-wrapper .navigation-next:hover {
+  border-left-color: #9a9a9a;
+}

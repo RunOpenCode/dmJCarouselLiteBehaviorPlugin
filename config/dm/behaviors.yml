@@ -1,0 +1,6 @@
+dmBehaviors:
+  dmJCarouselLiteBehavior:
+    section: Media Gallery
+    name: JCarousel Lite
+    form: dmJCarouselLiteBehaviorForm
+    view: dmJCarouselLiteBehaviorView
