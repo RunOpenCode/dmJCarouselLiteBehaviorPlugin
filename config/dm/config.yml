@@ -15,21 +15,20 @@ default:
       is_vertical: false
       is_circular: true
       visible: 1
-      start: 1
       scroll: 1
       pager: bottom
       navigation: bottom
     labels:
       auto_scroll_period: Auto scroll interval
       speed: Scroll speed
-      start: Start from
       hover_pause: Pause on hover
+      is_vertical: Vertical
+      is_circular: Circular
     helps:
       auto_scroll: Auto scroll items
       auto_scroll_period: Interval in ms between two auto scrolling
       mouse_wheel: Enable/disable mouse wheel for scrolling
       speed: Speed of scrolling animation in ms
-      start: The order number of first visible item
       scroll: Number of items to scroll at once
       hover_pause: Mouse hover pause scrolling when auto scroll is set to true
       visible: Number of visible items

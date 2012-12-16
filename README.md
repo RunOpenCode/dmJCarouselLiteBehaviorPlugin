@@ -64,21 +64,18 @@ for this behavior.
 	      is_vertical: false
 	      is_circular: true
 	      visible: 1
-	      start: 1
 	      scroll: 1
 	      pager: bottom
 	      navigation: bottom
 	    labels:
 	      auto_scroll_period: Auto scroll interval
 	      speed: Scroll speed
-	      start: Start from
 	      hover_pause: Pause on hover
 	    helps:
 	      auto_scroll: Auto scroll items
 	      auto_scroll_period: Interval in ms between two auto scrolling
 	      mouse_wheel: Enable/disable mouse wheel for scrolling
 	      speed: Speed of scrolling animation in ms
-	      start: The order number of first visible item
 	      scroll: Number of items to scroll at once
 	      hover_pause: Mouse hover pause scrolling when auto scroll is set to true
 	      visible: Number of visible items
@@ -112,14 +109,13 @@ insight of structure and it ought to help you with theming.
 
 Important note
 ---------------
-The behavior have a BUG with paging, that is, marking of current page displayed when using
-circular carousel. It will be fixed soon as I figure out how.
-	
-	
-	
-	
-	
-	
-	
-	
-	
+The jCarouselLite can be circular or non-circular. The various settings regarding `visible`
+and `scroll` parameters can lead to various behaviors with pager.
+
+For non-circular, it is important to know that fail-safe strategy is implemented, in situations
+when there are less items to scroll then visible. Per example, visible is 6, scroll is 6 and you 
+have 9 items - the behavior will add 3 more `<div class="empty"/>` tags.
+
+For circular, this kind of strategy is not implemented which produce glitch in pager
+when transitioning from first to last and vice versa. The pager will show as it is first
+page. There is no logic fix for this - what to show, first or last? So, the first is set.

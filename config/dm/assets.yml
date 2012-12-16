@@ -1,8 +1,8 @@
 js:
   dmJCarouselLiteBehaviorPlugin:
-    jcarousellite:  jquery.jcarousel-lite.modified
+    jcarousellite:  jquery.jcarousel-lite.modified.pack.min
     mousewheel:     jquery.mousewheel.min
-    launch: dmJCarouselLiteBehavior
+    launch: dmJCarouselLiteBehavior.pack.min
     form: form/dmJCarouselLiteBehaviorForm
 css:
   dmJCarouselLiteBehaviorPlugin:

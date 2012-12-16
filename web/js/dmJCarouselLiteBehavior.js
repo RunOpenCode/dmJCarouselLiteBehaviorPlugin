@@ -10,10 +10,10 @@
         },
         
         start: function(behavior) {  
-            var $this = $(this);
-            var $copy = $this.children().clone(true, true);
+            var $this = $(this), 
+            $copy = $this.children().clone(true, true);
             $this.data('dmJCarouselLiteBehaviorPreviousDOM', $this.children().detach());                    
-            $this.empty();
+            $this.empty();            
             
             // First, read the settings and prepare vars for jCarouselLite
             // Navigation will be added later on in structure...
@@ -24,18 +24,10 @@
                 vertical: behavior.is_vertical,
                 circular: behavior.is_circular,
                 visible: behavior.visible,
-                scroll: behavior.scroll,
-                hoverPause: behavior.hover_pause
-            };
-            if (behavior.auto_scroll) {
-                settings.auto = behavior.auto_scroll_period;
-            } else {
-                settings.auto = null;
-            };
-            if (behavior.start > $copy.length) {
-                settings.start = $copy.length - 1;
-            } else {
-                settings.start = behavior.start - 1;
+                scroll: Math.min(behavior.scroll, behavior.visible),
+                hoverPause: behavior.hover_pause,
+                start: 0,
+                auto: ((behavior.auto_scroll) ? behavior.auto_scroll_period : null)
             };
             
             // Now - prepare HTML structure
@@ -54,17 +46,17 @@
             if (behavior.pager != 'none') {                
                 $pager = $('<div class="pager"></div>');
                 settings.btnGo = [];
-                var noOfPages = Math.ceil($copy.length / behavior.scroll);
+                var noOfPages = 1 + Math.ceil(($copy.length - behavior.visible) / behavior.scroll);
                 for (var i=0; i<noOfPages; i++) {                    
                     var $pagerItem = $('<div class="pager-item"><span class="enumeration">' + (i+1).toString() + '</span></div>');
                     $pager.append($pagerItem);
-                    if (i+1 == behavior.start) {
+                    if (i == 0) {
                         $pagerItem.addClass('current');
                     };
                     // Add to navigation pager buttons
                     settings.btnGo.push($pagerItem);
-                    if (behavior.visible > 1) {
-                        for (var j=0; j<behavior.visible-1; j++) {
+                    if (behavior.scroll > 1) {
+                        for (var j=0; j<behavior.scroll-1; j++) {
                             settings.btnGo.push(null);
                         };
                     };
@@ -121,7 +113,7 @@
             $this.append($jCarouselLiteWrapper);
             $copy
             .css('width', behavior.item_width.toString() + 'px')
-            .css('height', behavior.item_height.toString() + 'px')
+            .css('height', behavior.item_height.toString() + 'px');
             $jCarouselLiteWrapper.jCarouselLite(settings);
             
             // Now, lets help pager to render nicely...
@@ -144,7 +136,7 @@
         destroy: function(behavior) {            
             var $this = $(this);
             $this.data('dmJCarouselLiteBehavior', null);
-            $this.data('dmJCarouselLiteBehaviorPreviousDOM', null)
+            $this.data('dmJCarouselLiteBehaviorPreviousDOM', null);
         }
     };
     

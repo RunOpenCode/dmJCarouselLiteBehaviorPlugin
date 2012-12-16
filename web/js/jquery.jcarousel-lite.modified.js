@@ -43,9 +43,24 @@ $.fn.jCarouselLite = function(o) {
         var ul = $("div.items", div), tLi = ul.children(), tl = tLi.length, v = o.visible;
 
         if(o.circular) {
-            ul.prepend(tLi.slice(tl-v+1).clone())
-              .append(tLi.slice(0,o.scroll).clone());
+            $.each(tLi, function(index){
+                $(this).data('jCarouselLitePage', Math.floor(index / o.scroll));
+            });
+            ul.prepend(tLi.slice(tl-v+1).clone(true, true))
+              .append(tLi.slice(0,o.scroll).clone(true, true));
             o.start += v-1;
+        } else {
+            if (o.btnPrev) {
+                o.btnPrev.addClass("disabled");
+            };
+            if ((tl-o.visible)%o.scroll > 0) {
+                for (var i=0; i < (o.scroll - (tl-o.visible)%o.scroll); i++) {
+                    ul.append($('<div class="empty"></div>'));
+                };
+            };
+            $.each(tLi, function(index){
+                $(this).data('jCarouselLitePage', Math.floor(index / o.scroll));
+            });
         };
 
         var li = ul.children();
@@ -141,41 +156,34 @@ $.fn.jCarouselLite = function(o) {
                 };                          // If neither overrides it, the curr will still be "to" and we can proceed.
 
                 running = true;
-                
+
                 ul.animate(
                     animCss == "left" ? {left: -(curr*liSize)} : {top: -(curr*liSize)} , o.speed, o.easing,
                     function() {
                         if(o.afterEnd)
                             o.afterEnd.call(this, vis());
                         running = false;
-                        
-                        // Mark pager
-                        // ***********************************
-                        // TODO This code does not work!!!!
-                        // Fix needed!!! ASAP!
-                        // ***********************************
+
                         if (o.btnGo) {
-                            $this.find('.pager-item').removeClass('current');
-                            if (o.btnGo[to-1]) {
-                                $(o.btnGo[to-1]).addClass('current');
+                            var $pagerItems = $this.find('.pager-item');
+                            $pagerItems.removeClass('current');
+                            var page = 0;
+                            if (o.circular) {
+                                page = $(li[curr]).data('jCarouselLitePage');
                             } else {
-                                var page = Math.ceil(curr/o.visible);
-                                if (page == Math.ceil(tl / o.scroll)) {
-                                    page = 1;
-                                };
-                                if (o.btnGo[page * o.visible - 2]) {
-                                    $(o.btnGo[page * o.visible - 2]).addClass('current');
-                                };                                
-                                if (o.btnGo[page * o.visible - 1]) {
-                                    $(o.btnGo[page * o.visible - 1]).addClass('current');
-                                };
+                                page = $(tLi[to]).data('jCarouselLitePage');
                             };
+                            if ($pagerItems.length <= page) {
+                                page = 0;
+                            };
+                            $($pagerItems.get(page)).addClass('current');
                         };
                     }
                 );
                 // Disable buttons when the carousel reaches the last/first, and enable when not
                 if(!o.circular) {
-                    $(o.btnPrev + "," + o.btnNext).removeClass("disabled");
+                    o.btnPrev.removeClass("disabled");
+                    o.btnNext.removeClass("disabled");
                     $( (curr-o.scroll<0 && o.btnPrev)
                         ||
                        (curr+o.scroll > itemLength-v && o.btnNext)

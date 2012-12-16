@@ -44,12 +44,12 @@ class dmJCarouselLiteBehaviorForm extends dmBehaviorBaseForm
                 'choices' => array_keys($this->themes)
             ));
 
-        $this->widgetSchema['item_width'] = new sfWidgetFormInputText();
+        $this->widgetSchema['item_width'] = new sfWidgetFormInputText(array(), array('size' => 5));        
         $this->validatorSchema['item_width'] = new sfValidatorInteger(array(
                 'min' => 10
             ));
 
-        $this->widgetSchema['item_height'] = new sfWidgetFormInputText();
+        $this->widgetSchema['item_height'] = new sfWidgetFormInputText(array(), array('size' => 5));
         $this->validatorSchema['item_height'] = new sfValidatorInteger(array(
                 'min' => 10
             ));
@@ -86,11 +86,6 @@ class dmJCarouselLiteBehaviorForm extends dmBehaviorBaseForm
                 'min' => 1
             ));
 
-        $this->widgetSchema['start'] = new sfWidgetFormInputText();
-        $this->validatorSchema['start'] = new sfValidatorInteger(array(
-                'min' => 1
-            ));
-
         $this->widgetSchema['scroll'] = new sfWidgetFormInputText();
         $this->validatorSchema['scroll'] = new sfValidatorInteger(array(
                 'min' => 1
@@ -113,6 +108,10 @@ class dmJCarouselLiteBehaviorForm extends dmBehaviorBaseForm
                 'choices' => array_keys($this->pager)
             ));
 
+        $this->validatorSchema->setPostValidator(
+            new sfValidatorCallback(array('callback' => array($this, 'checkVisibleScrollRelation')))
+        );
+        
         $this->getWidgetSchema()->setLabels(sfConfig::get('dm_dmJCarouselLiteBehavior_labels', array()));
         $this->getWidgetSchema()->setHelps(sfConfig::get('dm_dmJCarouselLiteBehavior_helps', array()));
 
@@ -120,9 +119,20 @@ class dmJCarouselLiteBehaviorForm extends dmBehaviorBaseForm
             $this->getWidgetSchema()->setDefaults(sfConfig::get('dm_dmJCarouselLiteBehavior_defaults', array()));
         }
 
+        
         parent::configure();
     }
 
+    public function checkVisibleScrollRelation($validator, $values) {
+        if ($values['visible'] < $values['scroll']) {            
+            
+            $error = new sfValidatorError($validator, 'The number of scrolling items can not be higher then number of visible items.');
+            throw new sfValidatorErrorSchema($validator, array('scroll' => $error));
+
+        }
+        return $values;
+    }
+    
     public function getStylesheets()
     {
         return array(
