@@ -3,7 +3,7 @@ js:
     jcarousellite:  jquery.jcarousel-lite.modified
     mousewheel:     jquery.mousewheel.min
     launch: dmJCarouselLiteBehavior
-    
+    form: form/dmJCarouselLiteBehaviorForm
 css:
   dmJCarouselLiteBehaviorPlugin:
     default: default

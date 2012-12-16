@@ -8,7 +8,7 @@ default:
       item_height: 100
       mouse_wheel: true
       auto_scroll: false
-      auto_scroll_period: 500
+      auto_scroll_period: 3000
       hover_pause: true
       speed: 500
       easing: jswing

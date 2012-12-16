@@ -24,7 +24,8 @@
                 vertical: behavior.is_vertical,
                 circular: behavior.is_circular,
                 visible: behavior.visible,
-                scroll: behavior.scroll
+                scroll: behavior.scroll,
+                hoverPause: behavior.hover_pause
             };
             if (behavior.auto_scroll) {
                 settings.auto = behavior.auto_scroll_period;
