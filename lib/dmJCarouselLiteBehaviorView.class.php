@@ -5,7 +5,7 @@
 class dmJCarouselLiteBehaviorView extends dmBehaviorBaseView {
 
     protected function filterBehaviorVars(array $vars = array()) {
-        $vars = parent::filterBehaviorVars($vars);
+        $vars = array_merge(sfConfig::get('dm_dmJCarouselLiteBehavior_defaults'), parent::filterBehaviorVars($vars));
         return $vars;
     }
 
